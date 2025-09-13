@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strats</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .fruit-card:hover { transform: translateY(-8px); }
+        .hero-bg { background: linear-gradient(135deg,rgb(233, 153, 166) 0%, rgb(233, 77, 77) 100%); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-green-600 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]">🍎 Strats</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link text-gray-900 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#products" class="nav-link text-gray-500 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Products</a>
+                        <a href="#about" class="nav-link text-gray-500 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#contact" class="nav-link text-gray-500 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        🛒 Cart (<span id="cart-count">0</span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg pt-16 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-black mb-6">
+                    Fresh & Organic Fruits
+                </h1>
+                <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+                    Discover the finest selection of premium quality fruits, delivered fresh to your doorstep
+                </p>
+            <br>
+            <br>
+            <br>
+                <button id="products" onclick="window.location.href='#products' "class="p-2 rounded-lg shadow-md hover:scale-105 transition">
+                  <img src="arr.jpeg" alt="arrow" class="w-12 h-12" />
+                 </button>
+            </div>
+        </div>
+<section id="products" class="relative py-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1576402187871-9d33ebfecf3a');">
+<div class="opacity-200 mt-10 flex justify-center">
+  <img src="frt.jpeg" 
+       alt="Orange" 
+       class="w-[20rem] h-[20rem] object-contain rounded-full drop-shadow-[0_0_40px_rgba(255,165,0,0.9)]" />
+</div>
+<br>
+<br>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white/80 rounded-2xl p-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 relative z-10">
+                Our Fresh Products
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto relative z-10">
+                Hand-picked fruits from the best orchards, ensuring maximum freshness and flavor
+            </p>
+        </div>
+
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12 relative z-10">
+            <div class="flex space-x-4 bg-white rounded-lg p-2 shadow-md">
+                <button onclick="filterProducts('all')" class="filter- btn bg-green-600 text-white px-6 py-2 rounded-md transition-colors">All</button>
+                <button onclick="filterProducts('citrus')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-green-600 hover:text-white px-6 py-2 rounded-md transition-colors">Citrus</button>
+                <button onclick="filterProducts('tropical')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-green-600 hover:text-white px-6 py-2 rounded-md transition-colors">Tropical</button>
+                <button onclick="filterProducts('berries')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-green-600 hover:text-white px-6 py-2 rounded-md transition-colors">Berries</button>
+        
+        <div>
+         <button onclick="openAddFruitForm()" class="mt-6 md:mt-0 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-colors shadow-md">
+                ➕ Add Fruit
+            </button>
+        </div>
+        <!-- Products Grid -->
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </div>
+</section>
+
+<style>
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+</style>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose FreshFruits?</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl">🌱</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">100% Organic</h3>
+                                <p class="text-gray-600">All our fruits are grown without harmful pesticides or chemicals</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl">🚚</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Fast Delivery</h3>
+                                <p class="text-gray-600">Same-day delivery available in most areas</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl">💯</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Quality Guarantee</h3>
+                                <p class="text-gray-600">100% satisfaction guarantee or your money back</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-2xl p-8 text-white">
+                        <div class="text-6xl mb-4">🍓🥭🍊</div>
+                        <h3 class="text-2xl font-bold mb-4">Farm to Table</h3>
+                        <p class="text-lg">Fresh fruits delivered within 24 hours of harvest</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+                <p class="text-lg text-gray-600">Have questions? We'd love to hear from you!</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-2xl">📍</div>
+                                <div>
+                                    <p class="font-semibold">Address</p>
+                                    <p class="text-gray-600">123 Fresh Street, Fruit Valley, FV 12345</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-2xl">📞</div>
+                                <div>
+                                    <p class="font-semibold">Phone</p>
+                                    <p class="text-gray-600">+91 948696*****</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-2xl">✉️</div>
+                                <div>
+                                    <p class="font-semibold">Email</p>
+                                    <p class="text-gray-600">hello@freshfruits.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                    <form class="space-y-4" onsubmit="handleContactForm(event)">
+        <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                                Send Message
+        </button>
+    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">🍎 Strats</h3>
+                    <p class="text-gray-400">Your trusted source for premium quality fresh fruits.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Categories</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Citrus Fruits</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tropical Fruits</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Berries</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Seasonal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <button class="text-2xl hover:text-green-400 transition-colors">ⓕ</button>
+                        <button class="text-2xl hover:text-green-400 transition-colors">🅾</button>
+                        <button class="text-2xl hover:text-green-400 transition-colors">🐦</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Strats. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product data
+        const products = [
+            { id: 1, name: 'Fresh Oranges', price: 4.99, category: 'citrus', emoji:"🍊",description: 'Perfect for smoothies'},
+            { id: 2, name: 'Avocado', price: 2.99, category: 'tropical', emoji: '🥑', description: 'Perfect for Vitamins' },
+            { id: 3, name: 'Red Apples', price: 3.99, category: 'other', emoji: '🍎', description: 'Crisp and delicious' },
+            { id: 4, name: 'Fresh Strawberries', price: 5.99, category: 'berries', emoji: '🍓', description: 'Sweet summer berries' },
+            { id: 5, name: 'Tropical Mango', price: 6.99, category: 'tropical', emoji: '🥭', description: 'Exotic and sweet' },
+            { id: 6, name: 'Juicy Grapes', price: 4.49, category: 'berries', emoji: '🍇', description: 'Perfect for snacking' },
+            { id: 7, name: 'Fresh Lemons', price: 3.49, category: 'citrus', emoji: '🍋', description: 'Zesty and fresh' },
+            { id: 8, name: 'Sweet Pineapple', price: 7.99, category: 'tropical', emoji: '🍍', description: 'Tropical sweetness' }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+            updateCartCount();
+        });
+
+        // Display products
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'fruit-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl';
+                productCard.innerHTML = `
+                    <div class="p-6 text-center">
+                        <div class="text-6xl mb-4">${product.emoji}</div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 mb-4">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-green-600">$${product.price}</span>
+                            <button onclick="addToCart(${product.id})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update filter button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn bg-gray-200 text-gray-700 hover:bg-green-600 hover:text-white px-6 py-2 rounded-md transition-colors';
+            });
+            event.target.className = 'filter-btn bg-green-600 text-white px-6 py-2 rounded-md transition-colors';
+
+            // Filter and display products
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(product => product.category === category);
+            
+            displayProducts(filteredProducts);
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartCount();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(full)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Scroll to products
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle contact form
+        function handleContactForm(event) {
+     event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    fetch('http://localhost:8080/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+    })
+    .then(res => res.json())
+    .then(data => {
+    if(data.success) {
+      alert('Message sent!');
+      event.target.reset();
+    }
+  })
+  .catch(err => console.error(err));
+}
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.className = 'nav-link text-gray-500 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors';
+                });
+                this.className = 'nav-link text-gray-900 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d8d166246aa931',t:'MTc1NzYxMTA0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
