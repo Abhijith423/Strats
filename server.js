@@ -9,13 +9,11 @@ const PORT = 8080;
 app.use(cors());
 app.use(bodyParser.json());
 
-// SQLite setup
 const db = new sqlite3.Database('./messages.db', (err) => {
   if (err) console.error(err.message);
   else console.log('Connected to SQLite DB');
 });
 
-// Create table if it doesn't exist
 db.run(`CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
@@ -24,7 +22,6 @@ db.run(`CREATE TABLE IF NOT EXISTS messages (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 )`);
 
-// Endpoint to receive messages
 app.post('/api/messages', (req, res) => {
   const { name, email, message } = req.body;
   console.log('Received message:', req.body); // logs in terminal
